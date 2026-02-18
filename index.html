@@ -29,8 +29,11 @@
         --footbal-gradient: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
         --football-light: #e8f5e9;
         
-        /* Travel Theme (New) */
+        /* Travel Theme */
         --travel-gradient: linear-gradient(135deg, #006064 0%, #0097a7 100%);
+        
+        /* Payment Theme */
+        --payment-bg: #f8f9fa;
         
         --wa-green: #25D366;
         --wa-dark: #128C7E;
@@ -51,7 +54,7 @@
         color: var(--text-main);
         line-height: 1.6;
         overflow-x: hidden;
-        padding-bottom: 80px; /* Space untuk tombol WA di bawah */
+        padding-bottom: 80px;
     }
 
     /* Header */
@@ -92,7 +95,6 @@
         gap: 25px;
     }
 
-    /* Responsive Grid */
     @media(min-width: 768px) {
         .container { grid-template-columns: 1fr 1fr; max-width: 900px; }
     }
@@ -315,11 +317,11 @@
         z-index: 5;
     }
 
-    /* --- TRAVEL SECTION (NEW) --- */
+    /* --- TRAVEL SECTION --- */
     .travel-section {
         width: 95%;
-        max-width: 800px; /* Lebar lebih fokus */
-        margin: 0 auto 40px;
+        max-width: 800px;
+        margin: 0 auto 30px;
         background: white;
         border-radius: var(--radius);
         box-shadow: var(--shadow);
@@ -387,6 +389,98 @@
         transform: translateY(-3px);
         background: #f57c00;
         box-shadow: 0 8px 20px rgba(255, 152, 0, 0.4);
+    }
+
+    /* --- PAYMENT SECTION (NEW) --- */
+    .payment-section {
+        width: 95%;
+        max-width: 800px;
+        margin: 0 auto 30px;
+        background: white;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 30px;
+        text-align: center;
+        border-top: 5px solid #0056b3; /* Blue accent for trust */
+    }
+
+    .payment-section h2 {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+        color: var(--text-main);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .bank-card {
+        background: var(--payment-bg);
+        border: 1px solid #e0e0e0;
+        border-radius: 12px;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        transition: transform 0.2s;
+    }
+
+    .bank-card:hover {
+        transform: scale(1.02);
+        border-color: #bbb;
+    }
+
+    .bank-info {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        text-align: left;
+    }
+
+    .bank-logo {
+        font-size: 2rem;
+        font-weight: 800;
+        color: #0056b3; /* Default Blue */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .bank-details h3 {
+        font-size: 1rem;
+        margin-bottom: 2px;
+        color: var(--text-main);
+    }
+
+    .bank-details p {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        margin-bottom: 4px;
+    }
+
+    .account-number {
+        font-family: 'Courier New', monospace;
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: var(--text-main);
+        background: #fff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        border: 1px dashed #ccc;
+        cursor: pointer;
+    }
+
+    .account-name {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #555;
+        margin-top: 2px;
     }
 
     /* Footer */
@@ -457,7 +551,9 @@
     @media(max-width: 480px) {
         .sticky-wa { width: 90%; justify-content: center; }
         .wa-number { font-size: 0.9rem; }
-        .travel-grid { grid-template-columns: 1fr; } /* Stack icons on mobile */
+        .travel-grid, .bank-card { flex-direction: column; text-align: center; }
+        .bank-info { flex-direction: column; gap: 5px; text-align: center; }
+        .account-number { width: 100%; text-align: center; }
     }
 </style>
 </head>
@@ -637,14 +733,13 @@
 
 </div>
 
-<!-- TRAVEL SECTION (NEW) -->
+<!-- TRAVEL SECTION -->
 <div class="travel-section">
     <div class="travel-header">
         <h2><i class="ph ph-airplane-tilt"></i> BOOKING TIKET TRAVEL</h2>
         <p>Cek & Pesan Tiket Pesawat, Kapal Laut, Kereta, dan Hotel</p>
     </div>
     <div class="travel-content">
-        <!-- Icons representing services -->
         <div class="travel-grid">
             <div class="travel-icon-box">
                 <i class="ph ph-airplane"></i>
@@ -659,13 +754,35 @@
                 <span>Kereta Api</span>
             </div>
         </div>
-
-        <!-- Link Button to Velotiket -->
         <p style="margin-bottom: 20px; color: #555;">Dapatkan harga terbaik untuk perjalanan Anda melalui mitra kami:</p>
         <a href="https://velotiket.com/28102018" target="_blank" class="btn-travel">
             <i class="ph ph-magnifying-glass"></i> Cek Ketersediaan Tiket
         </a>
     </div>
+</div>
+
+<!-- PAYMENT SECTION (NEW) -->
+<div class="payment-section">
+    <h2><i class="ph ph-bank"></i> Informasi Pembayaran</h2>
+    <p style="margin-bottom: 20px; color: #666; font-size: 0.9rem;">Silakan transfer ke salah satu rekening di bawah ini:</p>
+    
+    <!-- Bank BRI -->
+    <div class="bank-card">
+        <div class="bank-info">
+            <div class="bank-logo" style="color: #00529c;">BRI</div>
+            <div class="bank-details">
+                <h3>BANK RAKYAT INDONESIA</h3>
+                <p class="account-name">a.n GREGORIUS BERLIN SALE</p>
+            </div>
+        </div>
+        <div class="account-number" onclick="copyToClipboard('467001042312539', 'Nomor Rekening BRI')">
+            4670 0104 2312 539
+        </div>
+    </div>
+
+    <!-- Anda bisa menambahkan bank lain di sini dengan copy struktur div bank-card -->
+    
+    <p style="font-size: 0.8rem; color: #888; margin-top: 15px;">*Klik nomor rekening untuk menyalin</p>
 </div>
 
 <footer>
@@ -725,7 +842,7 @@
                         `📺 Provider: ${data.name}\n` +
                         `⏱ Durasi: ${data.duration}\n` +
                         `💰 Harga: Rp ${parseInt(data.price.replace(/\./g, '')).toLocaleString('id-ID')}\n\n` +
-                        ` Ketik ID Pelanggannya disini : `;
+                        `Mohon infonya.`;
         }
 
         const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
@@ -749,6 +866,15 @@
 
         toast.classList.add('show');
         setTimeout(() => { toast.classList.remove('show'); }, 3000);
+    }
+
+    // Fitur Copy No Rekening
+    function copyToClipboard(text, bankName) {
+        navigator.clipboard.writeText(text).then(() => {
+            showToast(`${bankName} berhasil disalin!`);
+        }).catch(err => {
+            showToast("Gagal menyalin", true);
+        });
     }
 </script>
 
