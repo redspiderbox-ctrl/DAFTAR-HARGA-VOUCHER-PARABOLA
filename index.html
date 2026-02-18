@@ -1,801 +1,756 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Harga Voucher Parabola & Bola</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daftar Harga Voucher Parabola & Travel</title>
 
-    <!-- Google Fonts: Poppins -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Icon Library: Phosphor Icons -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+<!-- Icon Library -->
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
 
-    <style>
-        /* --- CSS VARIABLES & RESET --- */
-        :root {
-            --primary-bg: #f0f2f5;
-            --card-bg: #ffffff;
-            --text-main: #1f2937;
-            --text-secondary: #6b7280;
-            
-            /* Brand Colors */
-            --color-kvision: #d32f2f;
-            --bg-kvision: #ffebee;
-            
-            --color-nex: #f57c00;
-            --bg-nex: #fff3e0;
-            
-            --color-spotv: #fbc02d;
-            --bg-spotv: #212121;
-            
-            /* Football Theme */
-            --grass-light: #4caf50;
-            --grass-dark: #388e3c;
-            
-            --wa-green: #25D366;
-            --wa-dark: #128C7E;
-            
-            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
-            --shadow-md: 0 8px 24px rgba(0,0,0,0.1);
-            --shadow-hover: 0 12px 32px rgba(0,0,0,0.15);
-            --radius: 16px;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--primary-bg);
-            color: var(--text-main);
-            line-height: 1.5;
-            padding-bottom: 100px; /* Space for sticky button */
-            overflow-x: hidden;
-        }
-
-        /* --- HEADER SECTION --- */
-        header {
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-            color: white;
-            text-align: center;
-            padding: 3rem 1.5rem 5rem;
-            border-bottom-left-radius: 2.5rem;
-            border-bottom-right-radius: 2.5rem;
-            box-shadow: 0 4px 20px rgba(30, 58, 138, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Decorative Circle in Header */
-        header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 300px;
-            height: 300px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-        }
-
-        header h1 {
-            font-size: 1.75rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            z-index: 2;
-        }
-
-        header p {
-            font-size: 0.95rem;
-            opacity: 0.9;
-            font-weight: 400;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* --- GRID CONTAINER --- */
-        .container {
-            width: 95%;
-            max-width: 1200px;
-            margin: -3.5rem auto 2rem; /* Overlap header */
-            position: relative;
-            z-index: 10;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-
-        @media(min-width: 640px) {
-            .container { grid-template-columns: repeat(2, 1fr); }
-            header h1 { font-size: 2rem; }
-        }
-
-        @media(min-width: 1024px) {
-            .container { grid-template-columns: repeat(4, 1fr); }
-        }
-
-        /* --- CARD STYLES --- */
-        .card {
-            background: var(--card-bg);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-md);
-            overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            display: flex;
-            flex-direction: column;
-            border: 1px solid rgba(0,0,0,0.03);
-            position: relative;
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        /* Card Header */
-        .card-header {
-            padding: 1.25rem;
-            text-align: center;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .logo {
-            font-size: 1.1rem;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            margin-bottom: 2px;
-            display: inline-block;
-        }
-
-        .package-name {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-secondary);
-            font-weight: 600;
-        }
-
-        /* Brand Themes */
-        .kvision .logo { color: var(--color-kvision); }
-        .kvision .card-header { background-color: var(--bg-kvision); }
-
-        .nex .logo { color: var(--color-nex); }
-        .nex .card-header { background-color: var(--bg-nex); }
-
-        .spotv .logo { color: var(--color-spotv); }
-        .spotv .card-header { background-color: var(--bg-spotv); color: white; }
-        .spotv .package-name { color: rgba(255,255,255,0.7); }
-
-        /* Football Special Pattern */
-        .football-special .card-header {
-            background: repeating-linear-gradient(
-                0deg,
-                var(--grass-light) 0px,
-                var(--grass-light) 20px,
-                var(--grass-dark) 20px,
-                var(--grass-dark) 40px
-            );
-            color: white;
-            padding: 1.5rem 1.25rem;
-            position: relative;
-        }
+<style>
+    :root {
+        --primary-bg: #f4f7f6;
+        --card-bg: #ffffff;
+        --text-main: #2c3e50;
+        --text-secondary: #7f8c8d;
         
-        /* Grass texture overlay */
-        .football-special .card-header::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.2) 0%, transparent 60%);
-            pointer-events: none;
-        }
-
-        .football-special .logo { position: relative; z-index: 2; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
-        .football-special .package-name { color: rgba(255,255,255,0.9); position: relative; z-index: 2; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
-
-        /* --- PRICING LIST --- */
-        .pricing-list {
-            list-style: none;
-            padding: 0.5rem 1rem 1rem;
-            flex-grow: 1;
-        }
-
-        .pricing-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.75rem 0.5rem;
-            margin-bottom: 4px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.2s, transform 0.1s;
-            position: relative;
-            border: 1px solid transparent;
-        }
-
-        /* Football Item Layout Override */
-        .football-special .pricing-item {
-            flex-direction: column;
-            align-items: flex-start;
-            padding: 1rem;
-            margin-bottom: 8px;
-            background: rgba(255,255,255,0.5);
-        }
-
-        .pricing-item:hover {
-            background-color: #f9fafb;
-        }
+        /* Brand Colors */
+        --accent-kvision: #d32f2f;
+        --accent-nex: #f57c00;
+        --accent-spotv: #212121;
         
-        .football-special .pricing-item:hover {
-            background-color: rgba(255,255,255,0.8);
-        }
-
-        .pricing-item:active {
-            transform: scale(0.98);
-        }
-
-        .item-content {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .item-title {
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: var(--text-main);
-        }
+        /* Football Special Theme */
+        --footbal-gradient: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+        --football-light: #e8f5e9;
         
-        .football-special .item-title {
-            font-size: 0.95rem;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .item-detail {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-        }
-
-        .price {
-            font-weight: 700;
-            font-size: 0.9rem;
-            color: var(--color-kvision);
-        }
+        /* Travel Theme (New) */
+        --travel-gradient: linear-gradient(135deg, #006064 0%, #0097a7 100%);
         
-        .nex .price { color: var(--color-nex); }
-        .spotv .price { color: var(--color-spotv); }
-        .football-special .price { color: #2e7d32; font-weight: 800; margin-top: 4px; align-self: flex-end;}
-
-        /* --- BADGE --- */
-        .badge {
-            position: absolute;
-            top: 0;
-            right: 0;
-            background: #ef4444;
-            color: white;
-            font-size: 0.6rem;
-            font-weight: 700;
-            padding: 2px 8px;
-            border-bottom-left-radius: 8px;
-            z-index: 5;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .badge.worldcup { background: #d4af37; color: black; }
-        .badge.hot { background: #ff5252; }
-
-        /* --- SELECTION STATES --- */
-        .pricing-item.selected {
-            background-color: #e3f2fd;
-            border-color: #2196f3;
-        }
-        .kvision .pricing-item.selected { background-color: #ffcdd2; border-color: var(--color-kvision); }
-        .nex .pricing-item.selected { background-color: #ffe0b2; border-color: var(--color-nex); }
-        .spotv .pricing-item.selected { background-color: #fff8e1; border-color: var(--color-spotv); color: black;}
-        .football-special .pricing-item.selected { 
-            background-color: #c8e6c9; 
-            border-color: #2e7d32; 
-        }
-
-        .check-icon {
-            font-size: 1.2rem;
-            opacity: 0;
-            transform: scale(0.5);
-            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            color: #2e7d32;
-        }
-
-        .football-special .check-icon {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-        }
-
-        .pricing-item.selected .check-icon {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        /* --- BUTTONS --- */
-        .btn-order {
-            margin: 0.5rem 1rem 1.25rem;
-            padding: 0.75rem;
-            border: none;
-            border-radius: 10px;
-            font-family: inherit;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-            color: white;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .btn-order:active { transform: scale(0.96); }
+        --wa-green: #25D366;
+        --wa-dark: #128C7E;
         
-        .kvision .btn-order { background-color: var(--color-kvision); }
-        .nex .btn-order { background-color: var(--color-nex); }
-        .spotv .btn-order { background-color: var(--color-spotv); color: black; }
-        .football-special .btn-order { background: linear-gradient(to right, #2e7d32, #43a047); }
+        --shadow: 0 10px 30px rgba(0,0,0,0.08);
+        --radius: 16px;
+    }
 
-        /* --- STICKY WHATSAPP --- */
-        .sticky-wa {
-            position: fixed;
-            bottom: 25px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--wa-green);
-            color: white;
-            padding: 12px 28px;
-            border-radius: 50px;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            font-weight: 700;
-            z-index: 100;
-            transition: transform 0.3s, background 0.3s;
-            border: 2px solid white;
-            max-width: 90%;
-            justify-content: center;
-        }
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
 
-        .sticky-wa:hover {
-            transform: translateX(-50%) scale(1.05);
-            background: var(--wa-dark);
-        }
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: var(--primary-bg);
+        color: var(--text-main);
+        line-height: 1.6;
+        overflow-x: hidden;
+        padding-bottom: 80px; /* Space untuk tombol WA di bawah */
+    }
 
-        .sticky-wa i { font-size: 1.5rem; }
-        .wa-number { font-size: 1rem; }
+    /* Header */
+    header {
+        background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+        color: white;
+        text-align: center;
+        padding: 60px 20px 90px;
+        position: relative;
+        border-bottom-left-radius: 40px;
+        border-bottom-right-radius: 40px;
+        box-shadow: 0 10px 30px rgba(13, 71, 161, 0.3);
+    }
 
-        @media (max-width: 480px) {
-            .sticky-wa { width: 90%; padding: 10px 15px; }
-            .wa-number { font-size: 0.9rem; }
-        }
+    header h1 {
+        font-size: 2rem;
+        font-weight: 800;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
 
-        /* --- TOAST NOTIFICATION --- */
-        .toast {
-            position: fixed;
-            bottom: 90px;
-            left: 50%;
-            transform: translateX(-50%) translateY(20px);
-            background: rgba(31, 41, 55, 0.95);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 999;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.9rem;
-            backdrop-filter: blur(4px);
-        }
-        
-        .toast.show { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
-        .toast.error { background: rgba(220, 38, 38, 0.95); }
-        .toast i { font-size: 1.2rem; }
+    header p {
+        font-size: 1rem;
+        opacity: 0.8;
+        font-weight: 400;
+    }
 
-        /* --- FOOTER & DISCLAIMER --- */
-        .content-footer {
-            text-align: center;
-            padding: 2rem 1rem 1rem;
-            margin-top: 2rem;
-            border-top: 1px solid rgba(0,0,0,0.05);
-            width: 95%;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+    /* Container Grid */
+    .container {
+        width: 95%;
+        max-width: 1400px;
+        margin: -70px auto 40px;
+        position: relative;
+        z-index: 10;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
 
-        .disclaimer-box {
-            background-color: #fff3cd;
-            color: #856404;
-            padding: 1rem;
-            border-radius: 12px;
-            border: 1px solid #ffeeba;
-            display: inline-flex;
-            align-items: flex-start;
-            gap: 12px;
-            text-align: left;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
+    /* Responsive Grid */
+    @media(min-width: 768px) {
+        .container { grid-template-columns: 1fr 1fr; max-width: 900px; }
+    }
+    @media(min-width: 1100px) {
+        .container { grid-template-columns: repeat(4, 1fr); max-width: 1400px; }
+    }
 
-        .disclaimer-box i {
-            font-size: 1.5rem;
-            margin-top: 2px;
-            flex-shrink: 0;
-        }
+    /* Card Base */
+    .card {
+        background: var(--card-bg);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 0;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid rgba(0,0,0,0.05);
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
 
-        .disclaimer-text h4 {
-            font-size: 0.9rem;
-            margin-bottom: 4px;
-            font-weight: 700;
-        }
+    .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
 
-        .disclaimer-text p {
-            font-size: 0.8rem;
-            opacity: 0.9;
-            line-height: 1.4;
-        }
+    /* Card Header */
+    .card-header {
+        padding: 20px;
+        text-align: center;
+        border-bottom: 1px solid #eee;
+    }
 
-        .copyright {
-            color: var(--text-secondary);
-            font-size: 0.75rem;
-        }
-    </style>
+    .logo {
+        font-size: 20px;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+        margin-bottom: 4px;
+        display: inline-block;
+    }
+
+    .package-name {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--text-secondary);
+        font-weight: 600;
+    }
+
+    /* THEMES */
+    .kvision .logo { color: var(--accent-kvision); }
+    .kvision .card-header { background-color: #ffebee; }
+
+    .nex .logo { color: var(--accent-nex); }
+    .nex .card-header { background-color: #fff3e0; }
+
+    .spotv .logo { color: #ffc107; }
+    .spotv .card-header { background-color: var(--accent-spotv); color: white; }
+    .spotv .package-name { color: #bbb; }
+
+    .football-special .card-header {
+        background: var(--footbal-gradient);
+        color: white;
+        padding: 25px 20px;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .football-special .card-header::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.1) 10%, transparent 10%);
+        background-size: 20px 20px;
+        opacity: 0.3;
+        transform: rotate(45deg);
+    }
+
+    .football-special .logo { color: #fff; position: relative; z-index: 2; }
+    .football-special .package-name { color: #a5d6a7; position: relative; z-index: 2; }
+
+    /* List Items */
+    .pricing-list {
+        list-style: none;
+        padding: 10px 15px 20px;
+        flex-grow: 1;
+        overflow-y: auto;
+    }
+
+    .pricing-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 12px;
+        border-bottom: 1px solid #f0f0f0;
+        transition: all 0.2s;
+        border-radius: 8px;
+        cursor: pointer;
+        position: relative;
+        margin-bottom: 5px;
+    }
+
+    .card:not(.football-special) .pricing-item {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .pricing-item:hover {
+        background-color: #fafafa;
+    }
+    .football-special .pricing-item:hover {
+        background-color: var(--football-light);
+    }
+
+    .pricing-item:last-child { border-bottom: none; }
+
+    .item-title {
+        font-weight: 700;
+        font-size: 14px;
+        color: var(--text-main);
+        margin-bottom: 2px;
+    }
+
+    .item-detail {
+        font-size: 11px;
+        color: var(--text-secondary);
+    }
+
+    .price {
+        font-weight: 700;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+    .card:not(.football-special) .price {
+        margin-top: 0;
+        color: var(--accent-kvision);
+        font-size: 16px;
+    }
+
+    .nex .price { color: var(--accent-nex); }
+    .spotv .price { color: var(--accent-spotv); }
+    .football-special .price { color: #2e7d32; font-size: 15px; }
+
+    /* Buttons */
+    .btn-order {
+        margin: 0 15px 20px;
+        padding: 12px;
+        border: none;
+        border-radius: 10px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.3s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        color: white;
+    }
+
+    .kvision .btn-order { background: var(--accent-kvision); }
+    .nex .btn-order { background: var(--accent-nex); }
+    .spotv .btn-order { background: #ffc107; color: #000; }
+    .football-special .btn-order { background: var(--footbal-gradient); box-shadow: 0 4px 15px rgba(46, 125, 50, 0.4); }
+
+    /* Selection & Checkmark */
+    .check-icon {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.2rem;
+        opacity: 0;
+        transition: opacity 0.2s;
+        color: #2e7d32;
+    }
+    
+    .card:not(.football-special) .check-icon {
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .football-special .check-icon {
+        top: 15px;
+        right: 15px;
+        transform: none;
+    }
+
+    .pricing-item.selected {
+        border: 1px solid #2e7d32;
+        background-color: #e8f5e9;
+    }
+
+    .kvision .pricing-item.selected { border-color: var(--accent-kvision); background: #ffcdd2; }
+    .nex .pricing-item.selected { border-color: var(--accent-nex); background: #ffe0b2; }
+    .spotv .pricing-item.selected { border-color: var(--accent-spotv); background: #eeeeee; }
+
+    .pricing-item.selected .check-icon {
+        opacity: 1;
+    }
+
+    .badge {
+        position: absolute;
+        top: 10px;
+        right: -35px;
+        background: #ff5252;
+        color: white;
+        padding: 4px 35px;
+        transform: rotate(45deg);
+        font-size: 0.65rem;
+        font-weight: 700;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        z-index: 5;
+    }
+
+    /* --- TRAVEL SECTION (NEW) --- */
+    .travel-section {
+        width: 95%;
+        max-width: 800px; /* Lebar lebih fokus */
+        margin: 0 auto 40px;
+        background: white;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        position: relative;
+    }
+
+    .travel-header {
+        background: var(--travel-gradient);
+        color: white;
+        padding: 25px;
+        text-align: center;
+    }
+
+    .travel-header h2 {
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .travel-content {
+        padding: 30px;
+        text-align: center;
+    }
+
+    .travel-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        margin-bottom: 25px;
+    }
+
+    .travel-icon-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+    }
+
+    .travel-icon-box i {
+        font-size: 2.5rem;
+        color: #0097a7;
+    }
+
+    .btn-travel {
+        display: inline-block;
+        background: #ff9800;
+        color: white;
+        padding: 15px 40px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 1.1rem;
+        box-shadow: 0 5px 15px rgba(255, 152, 0, 0.3);
+        transition: all 0.3s;
+        border: 2px solid white;
+    }
+
+    .btn-travel:hover {
+        transform: translateY(-3px);
+        background: #f57c00;
+        box-shadow: 0 8px 20px rgba(255, 152, 0, 0.4);
+    }
+
+    /* Footer */
+    footer {
+        text-align: center;
+        padding: 40px 20px;
+        color: var(--text-secondary);
+        font-size: 0.85rem;
+        margin-top: 20px;
+    }
+
+    /* STICKY WHATSAPP BUTTON */
+    .sticky-wa {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--wa-green);
+        color: white;
+        padding: 12px 25px;
+        border-radius: 50px;
+        box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        font-weight: 600;
+        z-index: 999;
+        transition: transform 0.3s, background 0.3s;
+        border: 2px solid white;
+        max-width: 90%;
+    }
+
+    .sticky-wa:hover {
+        transform: translateX(-50%) scale(1.05);
+        background: var(--wa-dark);
+    }
+
+    .sticky-wa i {
+        font-size: 1.4rem;
+    }
+
+    .wa-number {
+        font-size: 1rem;
+    }
+
+    /* Toast */
+    .toast {
+        position: fixed;
+        bottom: 90px;
+        left: 50%;
+        transform: translateX(-50%) translateY(100px);
+        background: #333;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 50px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        opacity: 0;
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        white-space: nowrap;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+    @media(max-width: 480px) {
+        .sticky-wa { width: 90%; justify-content: center; }
+        .wa-number { font-size: 0.9rem; }
+        .travel-grid { grid-template-columns: 1fr; } /* Stack icons on mobile */
+    }
+</style>
 </head>
+
 <body>
 
-    <header>
-        <h1>Voucher Parabola & Bola</h1>
-        <p>Pusat Paket K-Vision, Nex Parabola & Sepak Bola Terlengkap</p>
-    </header>
+<header>
+    <h1>Voucher Parabola & Travel</h1>
+    <p>K-Vision, Nex Parabola, Paket Bola & Booking Tiket</p>
+</header>
 
-    <div class="container">
+<div class="container">
 
-        <!-- CARD 1: K-VISION CLING -->
-        <div class="card kvision" id="card-kvision">
-            <div class="card-header">
-                <div class="logo">K-VISION</div>
-                <div class="package-name">Paket Cling</div>
-            </div>
-            <ul class="pricing-list">
-                <li class="pricing-item" onclick="selectPackage('kvision', '1 Bulan', '23000', this)">
-                    <div class="item-content">
-                        <span class="item-title">1 Bulan</span>
-                    </div>
-                    <span class="price">Rp 23.000</span>
-                    <i class="ph-fill ph-check-circle check-icon"></i>
-                </li>
-                <li class="pricing-item" onclick="selectPackage('kvision', '2 Bulan', '46000', this)">
-                    <div class="item-content">
-                        <span class="item-title">2 Bulan</span>
-                    </div>
-                    <span class="price">Rp 46.000</span>
-                    <i class="ph-fill ph-check-circle check-icon"></i>
-                </li>
-                <li class="pricing-item" onclick="selectPackage('kvision', '3 Bulan', '63000', this)">
-                    <div class="item-content">
-                        <span class="item-title">3 Bulan</span>
-                    </div>
-                    <span class="price">Rp 63.000</span>
-                    <i class="ph-fill ph-check-circle check-icon"></i>
-                </li>
-                <li class="pricing-item" onclick="selectPackage('kvision', '6 Bulan', '103000', this)">
-                    <div class="item-content">
-                        <span class="item-title">6 Bulan</span>
-                    </div>
-                    <span class="price">Rp 103.000</span>
-                    <i class="ph-fill ph-check-circle check-icon"></i>
-                </li>
-                <li class="pricing-item" onclick="selectPackage('kvision', '12 Bulan', '203000', this)">
-                    <div class="badge">POPULER</div>
-                    <div class="item-content">
-                        <span class="item-title">12 Bulan</span>
-                    </div>
-                    <span class="price">Rp 203.000</span>
-                    <i class="ph-fill ph-check-circle check-icon"></i>
-                </li>
-            </ul>
-            <button class="btn-order" onclick="orderNow('kvision')">
-                <i class="ph-bold ph-shopping-cart"></i> Pesan
-            </button>
+    <!-- 1. K-VISION CLING -->
+    <div class="card kvision" id="card-kvision">
+        <div class="card-header">
+            <div class="logo">K-VISION</div>
+            <div class="package-name">Paket Cling</div>
         </div>
-
-        <!-- CARD 2: NEX PARABOLA -->
-        <div class="card nex" id="card-nex">
-            <div class="card-header">
-                <div class="logo">NEX PARABOLA</div>
-                <div class="package-name">Paket Basic</div>
-            </div>
-            <ul class="pricing-list">
-                <li class="pricing-item" onclick="selectPackage('nex', '1 Bulan', '23000', this)">
-                    <div class="item-content">
-                        <span class="item-title">1 Bulan</span>
-                    </div>
-                    <span class="price">Rp 23.000</span>
-                    <i class="ph-fill ph-check-circle check-icon"></i>
-                </li>
-                <li class="pricing-item" onclick="selectPackage('nex', '2 Bulan', '46000', this)">
-                    <div class="item-content">
-                        <span class="item-title">2 Bulan</span>
-                    </div>
-                    <span class="price">Rp 46.000</span>
-                    <i class="ph-fill ph-check-circle check-icon"></i>
-                </li>
-                <li class="pricing-item" onclick="selectPackage('nex', '3 Bulan', '63000', this)">
-                    <div class="item-content">
-                        <span class="item-title">3 Bulan</span>
-                    </div>
-                    <span class="price">Rp 63.000</span>
-                    <i class="ph-fill ph-check-circle check-icon"></i>
-                </li>
-                <li class="pricing-item" onclick="selectPackage('nex', '6 Bulan', '103000', this)">
-                    <div class="item-content">
-                        <span class="item-title">6 Bulan</span>
-                    </div>
-                    <span class="price">Rp 103.000</span>
-                    <i class="ph-fill ph-check-circle check-icon"></i>
-                </li>
-                <li class="pricing-item" onclick="selectPackage('nex', '12 Bulan', '203000', this)">
-                    <div class="badge">HEMAT</div>
-                    <div class="item-content">
-                        <span class="item-title">12 Bulan</span>
-                    </div>
-                    <span class="price">Rp 203.000</span>
-                    <i class="ph-fill ph-check-circle check-icon"></i>
-                </li>
-            </ul>
-            <button class="btn-order" onclick="orderNow('nex')">
-                <i class="ph-bold ph-shopping-cart"></i> Pesan
-            </button>
-        </div>
-
-        <!-- CARD 3: K-VISION SPOTV -->
-        <div class="card spotv" id="card-spotv">
-            <div class="card-header">
-                <div class="logo">K-VISION</div>
-                <div class="package-name">Paket SpotV (Sport)</div>
-            </div>
-            <ul class="pricing-list">
-                <li class="pricing-item" onclick="selectPackage('spotv', '1 Bulan', '83000', this)">
-                    <div class="item-content">
-                        <span class="item-title">1 Bulan</span>
-                    </div>
-                    <span class="price">Rp 83.000</span>
-                    <i class="ph-fill ph-check-circle check-icon"></i>
-                </li>
-                <li class="pricing-item" onclick="selectPackage('spotv', '3 Bulan', '183000', this)">
-                    <div class="item-content">
-                        <span class="item-title">3 Bulan</span>
-                    </div>
-                    <span class="price">Rp 183.000</span>
-                    <i class="ph-fill ph-check-circle check-icon"></i>
-                </li>
-                <li class="pricing-item" onclick="selectPackage('spotv', '6 Bulan', '303000', this)">
-                    <div class="item-content">
-                        <span class="item-title">6 Bulan</span>
-                    </div>
-                    <span class="price">Rp 303.000</span>
-                    <i class="ph-fill ph-check-circle check-icon"></i>
-                </li>
-                <li class="pricing-item" onclick="selectPackage('spotv', '12 Bulan', '503000', this)">
-                    <div class="badge">SPORT</div>
-                    <div class="item-content">
-                        <span class="item-title">12 Bulan</span>
-                    </div>
-                    <span class="price">Rp 503.000</span>
-                    <i class="ph-fill ph-check-circle check-icon"></i>
-                </li>
-            </ul>
-            <button class="btn-order" onclick="orderNow('spotv')">
-                <i class="ph-bold ph-shopping-cart"></i> Pesan
-            </button>
-        </div>
-
-        <!-- CARD 4: PAKET SPESIAL SEPAK BOLA -->
-        <div class="card football-special" id="card-football">
-            <div class="card-header">
-                <div class="logo">⚽ SPESIAL BOLA</div>
-                <div class="package-name">Pertandingan Utama</div>
-            </div>
-            <ul class="pricing-list">
-                <li class="pricing-item" onclick="selectPackage('football', 'Liga Indonesia', '75000', this)">
-                    <div class="badge">LIVE</div>
-                    <div class="item-title">🇮🇩 LIGA INDONESIA</div>
-                    <div class="item-detail">Satu Musim Penuh</div>
-                    <div class="price">Rp 0.000</div>
-                    <i class="ph-fill ph-check-circle check-icon"></i>
-                </li>
-                <li class="pricing-item" onclick="selectPackage('football', 'Liga Inggris', '350000', this)">
-                    <div class="item-title">🏴󠁧󠁢󠁥󠁮󠁧󠁿 LIGA INGGRIS</div>
-                    <div class="item-detail">Satu Musim (Full Season)</div>
-                    <div class="price">Rp 0.000</div>
-                    <i class="ph-fill ph-check-circle check-icon"></i>
-                </li>
-                <li class="pricing-item" onclick="selectPackage('football', 'Piala AFF', '100000', this)">
-                    <div class="item-title">🏆 PIALA ASEAN (AFF)</div>
-                    <div class="item-detail">Sampai Selesai Turnamen</div>
-                    <div class="price">Rp 0.000</div>
-                    <i class="ph-fill ph-check-circle check-icon"></i>
-                </li>
-                <li class="pricing-item" onclick="selectPackage('football', 'Piala Asia', '150000', this)">
-                    <div class="item-title">🥉 PIALA ASIA (AFC)</div>
-                    <div class="item-detail">Sampai Selesai Turnamen</div>
-                    <div class="price">Rp 0.000</div>
-                    <i class="ph-fill ph-check-circle check-icon"></i>
-                </li>
-                <li class="pricing-item" onclick="selectPackage('football', 'Piala Eropa', '200000', this)">
-                    <div class="badge hot">HOT</div>
-                    <div class="item-title">🇪🇺 PIALA EROPA (EURO)</div>
-                    <div class="item-detail">Sampai Selesai Turnamen</div>
-                    <div class="price">Rp 0.000</div>
-                    <i class="ph-fill ph-check-circle check-icon"></i>
-                </li>
-                <li class="pricing-item" onclick="selectPackage('football', 'Piala Dunia', '250000', this)">
-                    <div class="badge worldcup">WC</div>
-                    <div class="item-title">🌍 PIALA DUNIA (FIFA)</div>
-                    <div class="item-detail">Full Tournament</div>
-                    <div class="price">Rp 0.000</div>
-                    <i class="ph-fill ph-check-circle check-icon"></i>
-                </li>
-            </ul>
-            <button class="btn-order" onclick="orderNow('football')">
-                <i class="ph-bold ph-ticket"></i> Beli Tiket
-            </button>
-        </div>
-
+        <ul class="pricing-list">
+            <li class="pricing-item" onclick="selectPackage('kvision', '1 Bulan', '23000', this)">
+                <span class="item-title">1 Bulan</span>
+                <span class="price">Rp 23.000</span>
+                <i class="ph-fill ph-check-circle check-icon"></i>
+            </li>
+            <li class="pricing-item" onclick="selectPackage('kvision', '2 Bulan', '46000', this)">
+                <span class="item-title">2 Bulan</span>
+                <span class="price">Rp 46.000</span>
+                <i class="ph-fill ph-check-circle check-icon"></i>
+            </li>
+            <li class="pricing-item" onclick="selectPackage('kvision', '3 Bulan', '63000', this)">
+                <span class="item-title">3 Bulan</span>
+                <span class="price">Rp 63.000</span>
+                <i class="ph-fill ph-check-circle check-icon"></i>
+            </li>
+            <li class="pricing-item" onclick="selectPackage('kvision', '6 Bulan', '103000', this)">
+                <span class="item-title">6 Bulan</span>
+                <span class="price">Rp 103.000</span>
+                <i class="ph-fill ph-check-circle check-icon"></i>
+            </li>
+            <li class="pricing-item" onclick="selectPackage('kvision', '12 Bulan', '203000', this)">
+                <div class="badge">POPULER</div>
+                <span class="item-title">12 Bulan</span>
+                <span class="price">Rp 203.000</span>
+                <i class="ph-fill ph-check-circle check-icon"></i>
+            </li>
+        </ul>
+        <button class="btn-order" onclick="orderNow('kvision')">Pesan</button>
     </div>
 
-    <!-- FOOTER & DISCLAIMER -->
-    <footer class="content-footer">
-        <div class="disclaimer-box">
-            <i class="ph-fill ph-warning-circle"></i>
-            <div class="disclaimer-text">
-                <h4>Catatan Penting</h4>
-                <p>Harga dapat berubah sewaktu-waktu mengikuti kebijakan provider. Silakan hubungi admin untuk konfirmasi harga terbaru sebelum melakukan pembayaran.</p>
+    <!-- 2. NEX PARABOLA -->
+    <div class="card nex" id="card-nex">
+        <div class="card-header">
+            <div class="logo">NEX PARABOLA</div>
+            <div class="package-name">Paket Basic</div>
+        </div>
+        <ul class="pricing-list">
+            <li class="pricing-item" onclick="selectPackage('nex', '1 Bulan', '23000', this)">
+                <span class="item-title">1 Bulan</span>
+                <span class="price">Rp 23.000</span>
+                <i class="ph-fill ph-check-circle check-icon"></i>
+            </li>
+            <li class="pricing-item" onclick="selectPackage('nex', '2 Bulan', '46000', this)">
+                <span class="item-title">2 Bulan</span>
+                <span class="price">Rp 46.000</span>
+                <i class="ph-fill ph-check-circle check-icon"></i>
+            </li>
+            <li class="pricing-item" onclick="selectPackage('nex', '3 Bulan', '63000', this)">
+                <span class="item-title">3 Bulan</span>
+                <span class="price">Rp 63.000</span>
+                <i class="ph-fill ph-check-circle check-icon"></i>
+            </li>
+            <li class="pricing-item" onclick="selectPackage('nex', '6 Bulan', '103000', this)">
+                <span class="item-title">6 Bulan</span>
+                <span class="price">Rp 103.000</span>
+                <i class="ph-fill ph-check-circle check-icon"></i>
+            </li>
+            <li class="pricing-item" onclick="selectPackage('nex', '12 Bulan', '203000', this)">
+                <div class="badge">HEMAT</div>
+                <span class="item-title">12 Bulan</span>
+                <span class="price">Rp 203.000</span>
+                <i class="ph-fill ph-check-circle check-icon"></i>
+            </li>
+        </ul>
+        <button class="btn-order" onclick="orderNow('nex')">Pesan</button>
+    </div>
+
+    <!-- 3. K-VISION SPOTV -->
+    <div class="card spotv" id="card-spotv">
+        <div class="card-header">
+            <div class="logo">K-VISION</div>
+            <div class="package-name">Paket SpotV</div>
+        </div>
+        <ul class="pricing-list">
+            <li class="pricing-item" onclick="selectPackage('spotv', '1 Bulan', '83000', this)">
+                <span class="item-title">1 Bulan</span>
+                <span class="price">Rp 83.000</span>
+                <i class="ph-fill ph-check-circle check-icon"></i>
+            </li>
+            <li class="pricing-item" onclick="selectPackage('spotv', '3 Bulan', '183000', this)">
+                <span class="item-title">3 Bulan</span>
+                <span class="price">Rp 183.000</span>
+                <i class="ph-fill ph-check-circle check-icon"></i>
+            </li>
+            <li class="pricing-item" onclick="selectPackage('spotv', '6 Bulan', '303000', this)">
+                <span class="item-title">6 Bulan</span>
+                <span class="price">Rp 303.000</span>
+                <i class="ph-fill ph-check-circle check-icon"></i>
+            </li>
+            <li class="pricing-item" onclick="selectPackage('spotv', '12 Bulan', '503000', this)">
+                <div class="badge">SPORT</div>
+                <span class="item-title">12 Bulan</span>
+                <span class="price">Rp 503.000</span>
+                <i class="ph-fill ph-check-circle check-icon"></i>
+            </li>
+        </ul>
+        <button class="btn-order" onclick="orderNow('spotv')">Pesan</button>
+    </div>
+
+    <!-- 4. PAKET SPESIAL SEPAK BOLA -->
+    <div class="card football-special" id="card-football">
+        <div class="card-header">
+            <div class="logo">⚽ SPESIAL BOLA</div>
+            <div class="package-name">K-Vision & Nex Parabola</div>
+        </div>
+        <ul class="pricing-list">
+            <li class="pricing-item" onclick="selectPackage('football', 'Liga Indonesia', '150000', this)">
+                <div class="badge">LIVE</div>
+                <div class="item-title">🇮🇩 LIGA INDONESIA</div>
+                <div class="item-detail">Satu Musim Penuh</div>
+                <div class="price">Rp 150.000</div>
+                <i class="ph-fill ph-check-circle check-icon"></i>
+            </li>
+            <li class="pricing-item" onclick="selectPackage('football', 'Liga Inggris', '350000', this)">
+                <div class="item-title">🏴󠁧󠁢󠁥󠁮󠁧󠁿 LIGA INGGRIS</div>
+                <div class="item-detail">Satu Musim (Full Season)</div>
+                <div class="price">Rp 350.000</div>
+                <i class="ph-fill ph-check-circle check-icon"></i>
+            </li>
+            <li class="pricing-item" onclick="selectPackage('football', 'Piala AFF / ASEAN', '100000', this)">
+                <div class="item-title">🏆 PIALA ASEAN (AFF)</div>
+                <div class="item-detail">Sampai Selesai Turnamen</div>
+                <div class="price">Rp 100.000</div>
+                <i class="ph-fill ph-check-circle check-icon"></i>
+            </li>
+            <li class="pricing-item" onclick="selectPackage('football', 'Piala Asia', '150000', this)">
+                <div class="item-title">🥉 PIALA ASIA (AFC)</div>
+                <div class="item-detail">Sampai Selesai Turnamen</div>
+                <div class="price">Rp 150.000</div>
+                <i class="ph-fill ph-check-circle check-icon"></i>
+            </li>
+            <li class="pricing-item" onclick="selectPackage('football', 'Copa America', '150000', this)">
+                <div class="item-title">⚽ COPA AMERICA</div>
+                <div class="item-detail">Sampai Selesai Turnamen</div>
+                <div class="price">Rp 150.000</div>
+                <i class="ph-fill ph-check-circle check-icon"></i>
+            </li>
+            <li class="pricing-item" onclick="selectPackage('football', 'Piala Eropa (EURO)', '200000', this)">
+                <div class="badge">HOT</div>
+                <div class="item-title">🇪🇺 PIALA EROPA</div>
+                <div class="item-detail">Sampai Selesai Turnamen</div>
+                <div class="price">Rp 200.000</div>
+                <i class="ph-fill ph-check-circle check-icon"></i>
+            </li>
+            <li class="pricing-item" onclick="selectPackage('football', 'Piala Dunia', '250000', this)">
+                <div class="badge" style="background:#d4af37; color:#000;">WORLD CUP</div>
+                <div class="item-title">🌍 PIALA DUNIA (FIFA)</div>
+                <div class="item-detail">Full Tournament</div>
+                <div class="price">Rp 250.000</div>
+                <i class="ph-fill ph-check-circle check-icon"></i>
+            </li>
+        </ul>
+        <button class="btn-order" onclick="orderNow('football')">
+            <i class="ph ph-ticket"></i> Beli Tiket Bola
+        </button>
+    </div>
+
+</div>
+
+<!-- TRAVEL SECTION (NEW) -->
+<div class="travel-section">
+    <div class="travel-header">
+        <h2><i class="ph ph-airplane-tilt"></i> BOOKING TIKET TRAVEL</h2>
+        <p>Cek & Pesan Tiket Pesawat, Kapal Laut, Kereta, dan Hotel</p>
+    </div>
+    <div class="travel-content">
+        <!-- Icons representing services -->
+        <div class="travel-grid">
+            <div class="travel-icon-box">
+                <i class="ph ph-airplane"></i>
+                <span>Pesawat</span>
+            </div>
+            <div class="travel-icon-box">
+                <i class="ph ph-boat"></i>
+                <span>Kapal Laut</span>
+            </div>
+            <div class="travel-icon-box">
+                <i class="ph ph-train"></i>
+                <span>Kereta Api</span>
             </div>
         </div>
+
+        <!-- Link Button to Velotiket -->
+        <p style="margin-bottom: 20px; color: #555;">Dapatkan harga terbaik untuk perjalanan Anda melalui mitra kami:</p>
+        <a href="https://velotiket.com/28102018" target="_blank" class="btn-travel">
+            <i class="ph ph-magnifying-glass"></i> Cek Ketersediaan Tiket
+        </a>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 Pusat Voucher Parabola & Sepak Bola Terlengkap</p>
+</footer>
+
+<!-- STICKY WHATSAPP BUTTON -->
+<a href="https://wa.me/6285333071119?text=Halo%20Admin,%20saya%20ingin%20tanya%20tentang%20voucher%20parabola." 
+   class="sticky-wa" 
+   target="_blank">
+    <i class="ph-fill ph-whatsapp-logo"></i>
+    <span class="wa-number">0853-3307-1119</span>
+</a>
+
+<!-- Toast Notification -->
+<div id="toast" class="toast">
+    <i class="ph-fill ph-check-circle"></i>
+    <span id="toast-message">Paket dipilih!</span>
+</div>
+
+<script>
+    const whatsappNumber = "6285333071119"; 
+
+    const selections = {
+        kvision: { name: 'K-Vision Cling', duration: null, price: null },
+        nex: { name: 'Nex Parabola Basic', duration: null, price: null },
+        spotv: { name: 'K-Vision SpotV', duration: null, price: null },
+        football: { name: 'Paket Spesial Sepak Bola', duration: null, price: null }
+    };
+
+    function selectPackage(provider, identifier, price, element) {
+        selections[provider].duration = identifier;
+        selections[provider].price = price;
+
+        const card = document.getElementById(`card-${provider}`);
+        const items = card.querySelectorAll('.pricing-item');
+        items.forEach(item => item.classList.remove('selected'));
+        element.classList.add('selected');
+    }
+
+    function orderNow(provider) {
+        const data = selections[provider];
+
+        if (!data.duration) {
+            showToast("Silakan pilih paket terlebih dahulu!", true);
+            return;
+        }
+
+        let message = "";
+        if(provider === 'football') {
+             message = `Halo Admin, saya mau beli paket Bola:\n\n` +
+                        `⚽ Paket: ${data.duration}\n` +
+                        `💰 Harga: Rp ${parseInt(data.price.replace(/\./g, '')).toLocaleString('id-ID')}\n\n` +
+                        `Apakah tersedia?`;
+        } else {
+             message = `Halo Admin, saya ingin pesan voucher:\n\n` +
+                        `📺 Provider: ${data.name}\n` +
+                        `⏱ Durasi: ${data.duration}\n` +
+                        `💰 Harga: Rp ${parseInt(data.price.replace(/\./g, '')).toLocaleString('id-ID')}\n\n` +
+                        `Mohon infonya.`;
+        }
+
+        const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+        window.open(url, '_blank');
+    }
+
+    function showToast(text, isError = false) {
+        const toast = document.getElementById('toast');
+        const toastMsg = document.getElementById('toast-message');
+        const icon = toast.querySelector('i');
+
+        toastMsg.innerText = text;
         
-        <p class="copyright">© 2026 Pusat Voucher Parabola & Sepak Bola Terlengkap</p>
-    </footer>
-
-    <!-- STICKY WHATSAPP BUTTON -->
-    <a href="https://wa.me/6285333071119?text=Halo%20Admin,%20saya%20ingin%20tanya%20tentang%20voucher%20parabola." 
-       class="sticky-wa" 
-       target="_blank"
-       aria-label="Chat WhatsApp">
-        <i class="ph-fill ph-whatsapp-logo"></i>
-        <span class="wa-number">0853-3307-1119</span>
-    </a>
-
-    <!-- TOAST NOTIFICATION ELEMENT -->
-    <div id="toast" class="toast">
-        <i id="toast-icon" class="ph-fill ph-info"></i>
-        <span id="toast-message">Notification</span>
-    </div>
-
-    <script>
-        // Konfigurasi Nomor WhatsApp
-        const whatsappNumber = "6285333071119";
-
-        // State Menyimpan Pilihan User
-        const selections = {
-            kvision: { name: 'K-Vision Cling', duration: null, price: null },
-            nex: { name: 'Nex Parabola Basic', duration: null, price: null },
-            spotv: { name: 'K-Vision SpotV', duration: null, price: null },
-            football: { name: 'Paket Spesial Sepak Bola', duration: null, price: null }
-        };
-
-        /**
-         * Memilih paket pada kartu tertentu
-         * @param {string} provider - kvision, nex, spotv, football
-         * @param {string} identifier - Nama durasi/paket
-         * @param {string} price - Harga dalam string (angka)
-         * @param {HTMLElement} element - Elemen DOM yang diklik
-         */
-        function selectPackage(provider, identifier, price, element) {
-            // Update data
-            selections[provider].duration = identifier;
-            selections[provider].price = price;
-
-            // Update UI Visual Selection
-            const card = document.getElementById(`card-${provider}`);
-            const items = card.querySelectorAll('.pricing-item');
-            
-            items.forEach(item => item.classList.remove('selected'));
-            element.classList.add('selected');
-
-            // Feedback kecil (vibrate jika didukung di mobile)
-            if (navigator.vibrate) navigator.vibrate(20);
+        if (isError) {
+            icon.className = "ph-fill ph-warning-circle";
+            icon.style.color = "#ff5252";
+        } else {
+            icon.className = "ph-fill ph-check-circle";
+            icon.style.color = "#4caf50";
         }
 
-        /**
-         * Membuka WhatsApp dengan pesan yang sudah diformat
-         * @param {string} provider 
-         */
-        function orderNow(provider) {
-            const data = selections[provider];
+        toast.classList.add('show');
+        setTimeout(() => { toast.classList.remove('show'); }, 3000);
+    }
+</script>
 
-            // Validasi: Apakah user sudah memilih paket?
-            if (!data.duration) {
-                showToast("⚠️ Silakan pilih durasi paket terlebih dahulu!", true);
-                return;
-            }
-
-            // Format Harga agar mudah dibaca (Rp 100.000)
-            const formattedPrice = new Intl.NumberFormat('id-ID').format(data.price);
-
-            // Buat Pesan
-            let message = "";
-            if(provider === 'football') {
-                 message = `Halo Admin, saya mau beli paket Bola:\n\n` +
-                            `⚽ Paket: *${data.duration}*\n` +
-                            `💰 Harga: Rp ${formattedPrice}\n\n` +
-                            `Apakah tersedia? Mohon infonya.`;
-            } else {
-                 message = `Halo Admin, saya ingin pesan voucher:\n\n` +
-                            `📺 Provider: *${data.name}*\n` +
-                            `⏱ Durasi: *${data.duration}*\n` +
-                            `💰 Harga: Rp ${formattedPrice}\n\n` +
-                            `Mohon diproses. Terima kasih.`;
-            }
-
-            // Buka Link WhatsApp
-            const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-            window.open(url, '_blank');
-        }
-
-        /**
-         * Menampilkan notifikasi Toast (pengganti alert)
-         * @param {string} text - Pesan
-         * @param {boolean} isError - Tipe pesan (error/sukses)
-         */
-        function showToast(text, isError = false) {
-            const toast = document.getElementById('toast');
-            const toastMsg = document.getElementById('toast-message');
-            const icon = document.getElementById('toast-icon');
-
-            toastMsg.innerText = text;
-            
-            // Reset kelas
-            toast.className = "toast"; 
-            
-            if (isError) {
-                icon.className = "ph-fill ph-warning-circle";
-                toast.classList.add("error");
-            } else {
-                icon.className = "ph-fill ph-check-circle";
-            }
-
-            // Trigger reflow untuk animasi ulang jika dipanggil cepat
-            void toast.offsetWidth; 
-            
-            toast.classList.add('show');
-
-            // Sembunyikan setelah 3 detik
-            setTimeout(() => { 
-                toast.classList.remove('show'); 
-            }, 3000);
-        }
-    </script>
 </body>
 </html>
