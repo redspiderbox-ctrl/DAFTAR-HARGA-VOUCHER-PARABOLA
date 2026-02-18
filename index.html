@@ -842,7 +842,7 @@
                         `📺 Provider: ${data.name}\n` +
                         `⏱ Durasi: ${data.duration}\n` +
                         `💰 Harga: Rp ${parseInt(data.price.replace(/\./g, '')).toLocaleString('id-ID')}\n\n` +
-                        `Ketik ID Pelanggan disini : .`;
+                        `Ketik ID Pelanggan disini : `;
         }
 
         const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
